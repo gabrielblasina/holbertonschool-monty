@@ -2,8 +2,10 @@
 
 int main(int argc, char **argv)
 {
+    int line = 0;
     char *buff = NULL, *opcode = NULL;
     size_t buffsize = 0;
+    stack_t *node;
     
     if (argc != 2)
     {
@@ -16,17 +18,12 @@ int main(int argc, char **argv)
         fprintf(stderr, "Error: Can't open file %s", argv[1]);
         exit(EXIT_FAILURE);
     }
-    while (getline(&buff, &buffsize, monty_f) != -1)
+    while (getline(&buff, &buffsize, monty_f) > 0)
     {
-        int line = 0;
-
+        *buff = NULL;
         line ++;
         opcode = strtok(buff, " \n\t");
-    
-        if (strcmp(opcode, "push") == 0)
-        {
-            fprintf(stdout, "%s\n", opcode);
-        }
+        execute(&node, line, buff);
     }
 
 
