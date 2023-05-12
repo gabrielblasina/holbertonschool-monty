@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     }
     while (getline(&buff, &buffsize, monty_f) != -1)
     {
-        int line = 0;
+        int line = 1;
 
         line ++;
         opcode = strtok(buff, " \n\t");
